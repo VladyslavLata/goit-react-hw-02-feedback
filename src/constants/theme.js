@@ -1,7 +1,7 @@
 export const theme = {
   colors: {
-    red: "#ff0000",
-    green: "#00ff7f",
+    red: '#ff0000',
+    green: '#00ff7f',
     black: '#000',
     white: '#fff',
     gray: '#929292',
@@ -22,8 +22,8 @@ export const theme = {
   },
   fontSizes: {
     xs: '12px',
-    s: '14px',
-    m: '16px',
+    s: '16px',
+    m: '24px',
     l: '32px',
     xl: '64px',
   },
@@ -45,6 +45,5 @@ export const theme = {
     md: '8px',
     lg: '16px',
     round: '50%',
-
   },
 };

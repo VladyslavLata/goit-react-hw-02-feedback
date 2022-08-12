@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { FeedbackMenu } from './FeedbackMenu/FeedbackMenu';
 import { Statistics } from './Statistics/Statistics';
+import { Section } from './Section/Section';
+import { Notificstion } from './Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -11,27 +13,34 @@ export class App extends Component {
     positiveFeedback: 0,
   };
 
-  addFeedback = feedback => {
-    switch (feedback) {
-      case 'Good':
-        this.setState(state => ({
-          good: state.good + 1,
-        }));
-        break;
-      case 'Neutral':
-        this.setState(state => ({
-          neutral: state.neutral + 1,
-        }));
-        break;
-      case 'Bad':
-        this.setState(state => ({
-          bad: state.bad + 1,
-        }));
-        break;
-      default:
-        console.log('wtf ?');
-    }
+  addFeedback = e => {
+    const { textContent } = e.target;
+    this.setState(state => ({
+      [textContent.toLowerCase()]: state[textContent.toLowerCase()] + 1,
+    }));
   };
+
+  // addFeedback = feedback => {
+  //   switch (feedback) {
+  //     case 'Good':
+  //       this.setState(state => ({
+  //         good: state.good + 1,
+  //       }));
+  //       break;
+  //     case 'Neutral':
+  //       this.setState(state => ({
+  //         neutral: state.neutral + 1,
+  //       }));
+  //       break;
+  //     case 'Bad':
+  //       this.setState(state => ({
+  //         bad: state.bad + 1,
+  //       }));
+  //       break;
+  //     default:
+  //       console.log('wtf ?');
+  //   }
+  // };
 
   countTotalFeedback = () =>
     this.setState(({ good, neutral, bad }) => ({
@@ -44,16 +53,30 @@ export class App extends Component {
     }));
 
   render() {
+    const { good, neutral, bad, total, positiveFeedback } = this.state;
     return (
       <>
-        <FeedbackMenu
-          title="Please leave feedback"
-          btnsName={['Good', 'Neutral', 'Bad']}
-          onAddFeedback={this.addFeedback}
-          onTotalFeedback={this.countTotalFeedback}
-          onPositiveFeedback={this.countPositiveFeedbackPercentage}
-        />
-        <Statistics state={this.state} />
+        <Section title="Please leave feedback">
+          <FeedbackMenu
+            btnsName={['Good', 'Neutral', 'Bad']}
+            onAddFeedback={this.addFeedback}
+            onTotalFeedback={this.countTotalFeedback}
+            onPositiveFeedback={this.countPositiveFeedbackPercentage}
+          />
+        </Section>
+        <Section title="Statistics">
+          {this.state.total > 0 ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={total}
+              positiveFeedback={positiveFeedback}
+            />
+          ) : (
+            <Notificstion message="There is no feedback" />
+          )}
+        </Section>
       </>
     );
   }

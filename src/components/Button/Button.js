@@ -8,8 +8,8 @@ export const Button = ({
 }) => (
   <ButtonF
     type="button"
-    onClick={() => {
-      onAddFeedback(btnText);
+    onClick={e => {
+      onAddFeedback(e);
       onTotalFeedback();
       onPositiveFeedback();
     }}
