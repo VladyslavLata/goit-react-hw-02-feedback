@@ -1,5 +1,6 @@
 import { Box } from 'components/Box/Box';
 import { Button } from 'components/Button/Button';
+import PropTypes from 'prop-types';
 
 export function FeedbackMenu({
   btnsName,
@@ -22,3 +23,7 @@ export function FeedbackMenu({
     </Box>
   );
 }
+
+FeedbackMenu.propTypes = {
+  btnsName: PropTypes.arrayOf(PropTypes.string),
+};

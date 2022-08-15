@@ -1,4 +1,5 @@
-import { ButtonF } from './Button.styled';
+import { ButtonFB } from './Button.styled';
+import PropTypes from 'prop-types';
 
 export const Button = ({
   btnText,
@@ -6,7 +7,7 @@ export const Button = ({
   onTotalFeedback,
   onPositiveFeedback,
 }) => (
-  <ButtonF
+  <ButtonFB
     type="button"
     onClick={e => {
       onAddFeedback(e);
@@ -15,5 +16,12 @@ export const Button = ({
     }}
   >
     {btnText}
-  </ButtonF>
+  </ButtonFB>
 );
+
+Button.propTypes = {
+  btnText: PropTypes.string.isRequired,
+  onAddFeedback: PropTypes.func.isRequired,
+  onTotalFeedback: PropTypes.func.isRequired,
+  onPositiveFeedback: PropTypes.func.isRequired,
+};
