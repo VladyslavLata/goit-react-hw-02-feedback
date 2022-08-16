@@ -2,22 +2,12 @@ import { Box } from 'components/Box/Box';
 import { Button } from 'components/Button/Button';
 import PropTypes from 'prop-types';
 
-export function FeedbackMenu({
-  btnsName,
-  onAddFeedback,
-  onTotalFeedback,
-  onPositiveFeedback,
-}) {
+export function FeedbackMenu({ options, onAddFeedback }) {
   return (
     <Box as="ul" display="flex" gridGap={4}>
-      {btnsName.map((btnName, i) => (
-        <li key={i}>
-          <Button
-            btnText={btnName}
-            onAddFeedback={onAddFeedback}
-            onTotalFeedback={onTotalFeedback}
-            onPositiveFeedback={onPositiveFeedback}
-          />
+      {options.map(option => (
+        <li key={option}>
+          <Button option={option} onAddFeedback={onAddFeedback} />
         </li>
       ))}
     </Box>
@@ -25,5 +15,5 @@ export function FeedbackMenu({
 }
 
 FeedbackMenu.propTypes = {
-  btnsName: PropTypes.arrayOf(PropTypes.string),
+  option: PropTypes.arrayOf(PropTypes.string),
 };
