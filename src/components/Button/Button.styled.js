@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const ButtonFB = styled.button`
-  /* text-transform: capitalize; */
   min-width: 70px;
   padding: ${p => p.theme.space[3]}px;
   border-radius: ${p => p.theme.radii.sm};
